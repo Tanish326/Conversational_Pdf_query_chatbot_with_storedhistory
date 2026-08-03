@@ -42,9 +42,16 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 # Load Environment Variables
 # ---------------------------------------------------
 
+import os
+import streamlit as st
+from dotenv import load_dotenv
+
 load_dotenv()
 
 groq_api_key = os.getenv("GROQ_API_KEY")
+
+if groq_api_key is None:
+    groq_api_key = st.secrets["GROQ_API_KEY"]
 
 # ---------------------------------------------------
 # Initialize LLM
